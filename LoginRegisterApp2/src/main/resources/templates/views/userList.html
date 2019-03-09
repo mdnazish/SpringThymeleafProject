@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main-layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shaad-Tech | User List</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container my-4">
+		<!-- Search Function -->
+		<form action="/users" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="text" class="form-control" name="name" placeholder="Search User" />
+				<input type="submit" value="Search" class="btn btn-sm btn-primary" />
+			</div>
+		</form>
+		
+		<!-- Display User list in table -->
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user:${users}">
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.email}"></td>
+							<td>
+								<a th:href="@{/addTask(email=${user.email})}" class="btn btn-sm btn-outline-dark">Add Task</a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

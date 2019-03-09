@@ -71,9 +71,13 @@ public class UserService {
 
 	public boolean isUserPresent(String email) {
 		/** 
-		 * It will return either object or throw an Runtime Exception
+		 * - get() method will return either object or throw an Runtime Exception.
+		 * - it throws an exception if there is no element present. It does not return null.
+		 * 
 		 * RE: java.util.NoSuchElementException
 		 * @see java.util.Optional.get(Optional.java:135) [Java 8]
+		 * 
+		 * If you want a way to get the element, or null if none is present, it's orElse(null).
 		 */
 		//User user = userRepository.findById(email).get();
 		
@@ -83,5 +87,15 @@ public class UserService {
 		} else {
 			return false;
 		}
+	}
+
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
+
+	public List<User> findByName(String name) {
+		// searching record by name query
+		// it's records returned by JPA 
+		return userRepository.findByNameLike("%"+name+"%");
 	}
 }
