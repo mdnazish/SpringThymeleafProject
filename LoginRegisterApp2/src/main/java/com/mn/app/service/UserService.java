@@ -68,4 +68,20 @@ public class UserService {
 	public Optional<User> findByEmail(String email) {
 		return userRepository.findById(email);
 	}
+
+	public boolean isUserPresent(String email) {
+		/** 
+		 * It will return either object or throw an Runtime Exception
+		 * RE: java.util.NoSuchElementException
+		 * @see java.util.Optional.get(Optional.java:135) [Java 8]
+		 */
+		//User user = userRepository.findById(email).get();
+		
+		User user = userRepository.findById(email).orElse(null);
+		if (user != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
