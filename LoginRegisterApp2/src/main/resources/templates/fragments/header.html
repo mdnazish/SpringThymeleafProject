@@ -9,26 +9,28 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/home">Home
+				<li class="nav-item active">
+					<a class="nav-link" href="/home">Home
 						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/register">Register</a>
+					</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-				<li class="nav-item"><a class="nav-link" href="/users">User</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-				<!-- <li class="nav-item dropdown show"><a
-					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-haspopup="true" aria-expanded="true">User</a>
-					<div class="dropdown-menu show" x-placement="bottom-start"
-						style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-						<a class="dropdown-item" href="#">Profile</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Logout</a>
-					</div></li> -->
+				<li class="nav-item" sec:authorize="!isAuthenticated()">
+					<a class="nav-link" href="/register">Register</a>
+				</li>
+				<li class="nav-item" sec:authorize="!isAuthenticated()">
+					<a class="nav-link" href="/login">Login</a>
+				</li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<a class="nav-link" href="/profile">Profile</a>
+				</li>
+				<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+					<a class="nav-link" href="/users">User</a>
+				</li>
+				<li class="nav-item" sec:authorize="!isAuthenticated()">
+					<a class="nav-link" href="/about">About Us</a>
+				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
 				<input class="form-control mr-sm-2" type="hidden">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
 			</form>

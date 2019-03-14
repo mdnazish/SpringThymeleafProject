@@ -17,4 +17,9 @@ public class IndexController {
 	public String showIndexPage() {
 		return "index";
 	}
+	
+	@GetMapping({"/about"})
+	public String showAboutPage() {
+		return "views/about";
+	}
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main-layout}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shaad-Tech | Error Page</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container my-4">
+		<div class="jumbotron">
+			<h4 class="display-5 text-info">Please Contact Administrator, If You reached this far!!!</h4>
+			<hr class="my-4">
+			<div>
+				<p class="lead text-danger">There is an Error Occur!</p>
+				<p class="text-info">
+					Message: <span th:text="${message}"></span><br>
+					Error Status: <span th:text="${status}" class="text text-danger"></span>
+				</p>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

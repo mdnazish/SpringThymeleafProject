@@ -20,6 +20,11 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/login")
+	public String loginForm() {
+		return "views/login";
+	}
 
 	@GetMapping("/users")
 	public String listusers(Model model, @RequestParam(defaultValue="") String name) {
